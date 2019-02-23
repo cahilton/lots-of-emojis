@@ -31,6 +31,9 @@ if __name__ == "__main__":
 
         if cur_json['ok']:
             emoji = cur_json['emoji']
+            print('save json list')
+            with open('./the_list.json', 'w') as the_list_file:
+               the_list_file.write(json.dumps(sorted(emoji.keys()), indent=4))
             n = 0
             for k, v in emoji.items():
                 url = v
