@@ -12,15 +12,18 @@ if __name__ == "__main__":
 
     if len(token) > 0:
         url = "https://slack.com/api/emoji.list?token=%s&pretty=1" % token
-        print('saving current json')
+        try:
+            print('saving current json')
 
-        r = requests.get(url)
-        r_json = r.json()
-        if r_json['ok']:
-            with open('current_emojis.json', 'wb') as cur:
-                cur.write(r.content)
-        else:
-            print('bad request getting current emojis')
+            r = requests.get(url)
+            r_json = r.json()
+            if r_json['ok']:
+                with open('current_emojis.json', 'wb') as cur:
+                    cur.write(r.content)
+            else:
+                print('bad request getting current emojis')
+        except Exception as e:
+            print(e)
 
     with open('./current_emojis.json') as json_data:
         cur_json = json.load(json_data)
