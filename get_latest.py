@@ -34,6 +34,7 @@ if __name__ == "__main__":
             print('save json list')
             with open('./the_list.json', 'w') as the_list_file:
                the_list_file.write(json.dumps(sorted(emoji.keys()), indent=4))
+
             n = 0
             for k, v in emoji.items():
                 url = v
@@ -53,6 +54,8 @@ if __name__ == "__main__":
 
             call(['git', 'add', 'images/.'])
             call(['git', 'commit', '-m', 'add images'])
+            call(['git', 'add', '/the_list.json'])
+            call(['git', 'commit', '-m', 'update list file'])
             call(['git', 'push'])
             print('done with '.format(n))
 
